@@ -43,6 +43,14 @@
 
 与gitbug开源项目类似,只是我们现在都在同一个仓库中
 
+
+## 修改线上bug
+1. 在 `master` 分支上拉一个   `fixbug` 分支 `git checkout -b fixbug_2021_11_01 origin/master`
+2. 修改完成并测试没有问题后 合并到 `master` 
+3. 生产环境测试没有问题后 将bug向上(新版本)合并 `master` -> `test`
+4. 如果gitlab后台合并显示冲突 `git checkout test && git fetch origin master:master && git merge master`   
+   处理冲突后 `git add . && git commit -m 合并master && git push origin test`
+
 ![合并](./img/self-test.png)
 
 当显示可自动合并时,创建 **这时不要自己合并了,找管理员审核后完成合并**
